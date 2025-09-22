@@ -45,7 +45,9 @@ const missionCardsMap = {
   eco: ecoMission
 };
 
-const missionTitles = {
+const expeditionData = window.EXPEDITION_DATA || {};
+
+const missionTitles = expeditionData.missionTitles || {
   intro: "План подорожі",
   history: "Історична експедиція",
   culture: "Культурний маршрут",
@@ -53,47 +55,19 @@ const missionTitles = {
   final: "Фінальний брифінг"
 };
 
-const facts = [
-  "У XVII столітті козаки розробляли соляні промисли на Торських озерах, формуючи перші промислові поселення Донбасу.",
-  "Юзівка (сучасний Донецьк) виросла навколо металургійного заводу, збудованого британцем Джоном Хьюзом у 1869 році.",
-  "У Святогірську зберігся Успенський Святогірський монастир, що має статус лаври та охороняється як пам'ятка архітектури.",
-  "Донбас є домівкою рідкісного виду тюльпану Шренка, який цвіте на крейдяних схилах навесні.",
-  "На території Приазов'я проживає грецька громада, що поєднує православні й традиційні весільні обряди.",
-  "Хомутовський степ - один із найдавніших заповідників України, створений 1926 року для охорони типових степових екосистем.",
-  "Бахмутське солеваріння відоме з 1571 року, коли в районі з'явилося перше козацьке поселення біля соляних джерел.",
-  "Сіверський Донець забезпечує водними ресурсами понад 4 мільйони людей і кілька десятків промислових міст регіону.",
-  "У Слов'янську традиція озокеритотерапії поєднує природні багатства місцевих грязей із сучасними методами лікування.",
-  "Маріупольські греки зберегли власну мову урум, що має тюркські корені та унікальні побутові обряди.",
-  "Святогірська лавра разом із крейдяними схилами внесена до попереднього списку природної спадщини ЮНЕСКО.",
-  "У заповіднику \"Крейдяна флора\" росте понад 30 видів рослин, що занесені до Червоної книги України."
-];
+const facts = Array.isArray(expeditionData.facts) ? expeditionData.facts : [];
+const historyEvents = Array.isArray(expeditionData.historyEvents) ? expeditionData.historyEvents : [];
 
-const historyEvents = [
-  {
-    id: "saltworks",
-    year: 1660,
-    title: "Соляні промисли на Торських (Слов'янських) озерах",
-    description: "Козацькі загони організували солеварні, поклавши початок промисловому освоєнню краю."
-  },
-  {
-    id: "yuzivka",
-    year: 1869,
-    title: "Початок роботи Юзівського металургійного заводу",
-    description: "Підприємець Джон Хьюз заснував завод, довкола якого виросло місто Юзівка (Донецьк)."
-  },
-  {
-    id: "oblast",
-    year: 1932,
-    title: "Створення Донецької області",
-    description: "УРСР утворила Донецьку область, об'єднавши промислові центри Донбасу."
-  },
-  {
-    id: "sviatohirsk",
-    year: 1997,
-    title: "Національний природний парк \"Святі Гори\"",
-    description: "Оголошено парк для збереження крейдяних схилів і заплав Сіверського Дінця."
-  }
-];
+const cultureAnswers = expeditionData.cultureAnswers || {
+  salt: "bakhmut",
+  song: "choirs",
+  wedding: "mariupol"
+};
+const ecoSolution = expeditionData.ecoSolution || {
+  community: "monitor",
+  science: "univer",
+  media: "schools"
+};
 
 const missionState = {
   history: { completed: false, bestScore: 0 },
@@ -208,6 +182,7 @@ function returnToMissionHub() {
 
 
 function randomFact() {
+  if (!facts.length || !factText) return;
   const nextFact = facts[Math.floor(Math.random() * facts.length)];
   factText.textContent = nextFact;
 }
@@ -218,7 +193,7 @@ const historyState = {
 };
 
 function resetHistoryMission() {
-  if (!historyEventsContainer) return;
+  if (!historyEventsContainer || !historyEvents.length) return;
   historyFeedback.textContent = '';
   historyFeedback.className = 'feedback';
   historyComplete.disabled = true;
@@ -391,20 +366,31 @@ historyComplete?.addEventListener('click', () => {
 cultureForm?.addEventListener('submit', (event) => {
   event.preventDefault();
   const data = new FormData(cultureForm);
-  let correct = 0;
-  if (data.get('salt') === 'bakhmut') correct += 1;
-  if (data.get('song') === 'choirs') correct += 1;
-  if (data.get('wedding') === 'mariupol') correct += 1;
+  const entries = Object.entries(cultureAnswers);
 
-  if (correct === 3) {
+  if (!entries.length) {
+    cultureFeedback.textContent = 'Немає даних для перевірки завдання.';
+    cultureFeedback.className = 'feedback';
+    finalizeMission('culture', 0);
+    return;
+  }
+
+  let correct = 0;
+  entries.forEach(([field, answer]) => {
+    if (data.get(field) === answer) {
+      correct += 1;
+    }
+  });
+
+  if (correct === entries.length) {
     cultureFeedback.textContent = 'Бездоганно! Ви точно знаєте культурні перлини Донбасу.';
     cultureFeedback.className = 'feedback success';
   } else {
-    cultureFeedback.textContent = `Кількість правильних відповідей: ${correct} з 3. Перечитайте підказки та спробуйте ще раз.`;
+    cultureFeedback.textContent = `Кількість правильних відповідей: ${correct} з ${entries.length}. Перечитайте підказки та спробуйте ще раз.`;
     cultureFeedback.className = 'feedback error';
   }
 
-  const earned = Math.round((correct / 3) * 100);
+  const earned = Math.round((correct / entries.length) * 100);
   finalizeMission('culture', earned);
 });
 
@@ -416,34 +402,31 @@ cultureForm?.addEventListener('reset', () => {
 ecoForm?.addEventListener('submit', (event) => {
   event.preventDefault();
   const data = new FormData(ecoForm);
-  const choices = {
-    community: data.get('community'),
-    science: data.get('science'),
-    media: data.get('media')
-  };
+  const entries = Object.entries(ecoSolution);
 
-  const solution = {
-    community: 'monitor',
-    science: 'univer',
-    media: 'schools'
-  };
+  if (!entries.length) {
+    ecoFeedback.textContent = 'Немає даних для перевірки завдання.';
+    ecoFeedback.className = 'feedback';
+    finalizeMission('eco', 0);
+    return;
+  }
 
   let correct = 0;
-  Object.keys(solution).forEach((key) => {
-    if (choices[key] === solution[key]) {
+  entries.forEach(([field, answer]) => {
+    if (data.get(field) === answer) {
       correct += 1;
     }
   });
 
-  if (correct === 3) {
+  if (correct === entries.length) {
     ecoFeedback.textContent = 'Вітаємо! План дій збалансований і враховує інтереси природи та громади.';
     ecoFeedback.className = 'feedback success';
   } else {
-    ecoFeedback.textContent = `Правильних рішень: ${correct} з 3. Перевірте вибір і повторіть спробу.`;
+    ecoFeedback.textContent = `Правильних рішень: ${correct} з ${entries.length}. Перевірте вибір і повторіть спробу.`;
     ecoFeedback.className = 'feedback error';
   }
 
-  const earned = Math.round((correct / 3) * 100);
+  const earned = Math.round((correct / entries.length) * 100);
   finalizeMission('eco', earned);
 });
 
@@ -465,6 +448,7 @@ restartButton?.addEventListener('click', () => {
   historyFeedback.textContent = '';
   cultureFeedback.textContent = '';
   ecoFeedback.textContent = '';
+  finalSummary.textContent = '';
   resetHistoryMission();
   updateScoreboard();
   showMission('intro');

@@ -320,10 +320,10 @@
       </div>
     </div>
   </section>
-  <div class="gallery-modal" hidden>
+  <div class="gallery-modal" hidden role="dialog" aria-modal="true" aria-labelledby="galleryModalCaption">
     <button class="gallery-modal__close" type="button" aria-label="Закрити фото">×</button>
     <img class="gallery-modal__image" src="" alt="" />
-    <p class="gallery-modal__caption"></p>
+    <p id="galleryModalCaption" class="gallery-modal__caption"></p>
   </div>
 
 
@@ -422,6 +422,7 @@
     <p>Створено спеціально для конкурсу "Навчальні online ігри". Авторське право збережено за командою юних дослідників.</p>
   </footer>
 
+  <script src="data.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
