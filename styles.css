@@ -851,12 +851,17 @@ select:focus-visible,
     align-items: center;
     justify-content: space-between;
     gap: 1.5rem;
-    margin-bottom: 1.8rem;
 }
 
 .gallery__header h2 {
     margin: 0;
     font-size: clamp(1.8rem, 3vw, 2.6rem);
+    position: relative;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--accent), #21adaf);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .gallery__viewport {
