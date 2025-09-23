@@ -226,10 +226,17 @@ function resetHistoryMission() {
 
         const button = document.createElement('button');
         button.type = 'button';
-        button.innerHTML = `<strong>${event.year}</strong><br/>${event.title}`;
-        button.addEventListener('click', () =>
-            handleHistoryChoice(card, event)
-        );
+        button.innerHTML = `
+            <strong class="event-year">${event.year}</strong>
+            <strong>${event.title}</strong>
+            <p>${event.description}</p>
+        `;
+        button.dataset.year = String(event.year);
+
+        button.addEventListener('click', () => {
+            card.classList.add('is-revealed');
+            handleHistoryChoice(card, event);
+        });
 
         const description = document.createElement('p');
         description.textContent = event.description;
