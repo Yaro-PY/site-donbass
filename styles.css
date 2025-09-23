@@ -263,7 +263,6 @@ body::before {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    margin-top: 1rem;
     min-width: 200px;
     padding: 0.95rem 2.6rem;
     background: linear-gradient(135deg, #00a0ff, #0064d3);
@@ -440,7 +439,6 @@ body::before {
 }
 
 .card__actions {
-    margin-top: 1.7rem;
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
@@ -457,6 +455,7 @@ body::before {
     display: grid;
     gap: 0.9rem;
     color: var(--muted);
+    text-align: left;
 }
 
 .intro-list li {
@@ -602,10 +601,17 @@ body::before {
     background: rgba(224, 241, 255, 0.28);
 }
 
+.culture-form legend {
+    font-size: 1.05rem;
+    color: var(--accent);
+}
+
 .culture-form legend,
 .eco-form legend {
+    display: block;
+    width: 100%;
+    padding-top: 0.8rem;
     font-weight: 700;
-    margin-bottom: 0.6rem;
 }
 
 .culture-form select,
