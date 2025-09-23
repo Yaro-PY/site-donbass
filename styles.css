@@ -132,8 +132,8 @@ body::before {
 }
 
 .hero__floating--north {
-    top: -2%;
-    left: 55%;
+    top: 2%;
+    left: 35%;
 }
 
 .hero__floating--east {
