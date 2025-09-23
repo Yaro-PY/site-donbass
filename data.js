@@ -2,7 +2,7 @@ window.EXPEDITION_DATA = Object.freeze({
     missionTitles: Object.freeze({
         intro: 'План подорожі',
         history: 'Історична експедиція',
-        culture: 'Культурний маршрут',
+        culture: 'Екологічний челендж',
         eco: 'Екопатруль Степів',
         final: 'Фінальний брифінг',
     }),
@@ -86,4 +86,12 @@ window.EXPEDITION_DATA = Object.freeze({
                 'Створено парк для збереження крейдяних схилів та заплав Сіверського Дінця.',
         },
     ]),
+    cultureAnswers: Object.freeze({
+        river: 'siversky',
+        forest: 'oak',
+        chalk: 'flora',
+        reserve: 'kamyani',
+        animal: 'saiga',
+        lake: 'slovyansk',
+    }),
 });

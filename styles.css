@@ -248,6 +248,30 @@ body::before {
     background: rgba(255, 255, 255, 0.24);
 }
 
+.site-title {
+    margin: 0;
+}
+
+.site-title__link {
+    position: relative;
+    display: inline-block;
+    color: #fff;
+    text-decoration: none;
+    transition: text-shadow 0.3s ease, color 0.3s ease;
+}
+
+.site-title__link:focus-visible {
+    outline: 3px solid #13b6b7;
+    outline-offset: 4px;
+    border-radius: 6px;
+}
+
+.site-title__link:hover {
+    color: #fff;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.6),
+        0 0 16px rgba(33, 173, 175, 0.6);
+}
+
 .cta,
 .secondary,
 .mission-card {
@@ -532,6 +556,12 @@ body::before {
     transform: translateY(-6px);
     border-color: rgba(0, 95, 163, 0.35);
     box-shadow: 0 20px 36px rgba(0, 95, 163, 0.18);
+}
+
+.mission-intro {
+    margin: 0.5rem 0;
+    color: var(--muted);
+    font-style: italic;
 }
 
 .event-grid {
