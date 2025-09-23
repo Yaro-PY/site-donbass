@@ -191,7 +191,7 @@ body::before {
     color: rgba(255, 255, 255, 0.92);
     text-shadow: 0 4px 18px rgba(0, 28, 68, 0.6);
     max-width: 640px;
-    margin: 0 auto;
+    margin: 0 auto 1.2rem;
 }
 
 .hero__stats {
