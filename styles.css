@@ -305,6 +305,7 @@ body::before {
     padding: 0.75rem 1.4rem;
     border-radius: var(--radius-sm);
     font-weight: 600;
+    font-size: 0.9rem;
     cursor: pointer;
     transition: background 0.2s ease, color 0.2s ease;
 }
@@ -594,11 +595,12 @@ body::before {
 
 .culture-form fieldset,
 .eco-form fieldset {
+    position: relative;
+    padding: 2.2rem 1.4rem 1.2rem;
     border: 2px dashed rgba(0, 95, 163, 0.18);
     border-radius: var(--radius-md);
-    padding: 1.2rem 1.4rem;
-    margin-bottom: 1.2rem;
     background: rgba(224, 241, 255, 0.28);
+    margin-bottom: 1.2rem;
 }
 
 .culture-form legend {
@@ -608,10 +610,16 @@ body::before {
 
 .culture-form legend,
 .eco-form legend {
-    display: block;
-    width: 100%;
-    padding-top: 0.8rem;
+    position: absolute;
+    top: 0.6rem;
+    left: 1.2rem;
+    margin: 0;
+    padding: 0 0.4rem;
+    line-height: 1.2;
     font-weight: 700;
+    color: var(--accent);
+    background: rgba(224, 241, 255, 0.28);
+    border-radius: 6px;
 }
 
 .culture-form select,
