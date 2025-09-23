@@ -294,6 +294,7 @@ body::before {
     padding: 0.85rem 1.9rem;
     border-radius: 999px;
     border: 2px solid var(--accent);
+    font-size: 0.9rem;
 }
 
 .link-button {
@@ -858,43 +859,6 @@ select:focus-visible,
     font-size: clamp(1.8rem, 3vw, 2.6rem);
 }
 
-.gallery__controls {
-    display: flex;
-    gap: 0.75rem;
-}
-
-.gallery__control {
-    width: 44px;
-    height: 44px;
-    border-radius: 999px;
-    border: 1px solid rgba(0, 95, 163, 0.25);
-    background: rgba(255, 255, 255, 0.65);
-    color: var(--accent);
-    font-size: 1.6rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 12px 24px rgba(11, 54, 94, 0.15);
-    transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
-}
-
-.gallery__control span {
-    line-height: 1;
-}
-
-.gallery__control:not(:disabled):hover {
-    transform: translateY(-2px);
-    background: rgba(0, 95, 163, 0.12);
-    box-shadow: 0 18px 32px rgba(11, 54, 94, 0.22);
-}
-
-.gallery__control:disabled {
-    opacity: 0.35;
-    cursor: default;
-    box-shadow: none;
-    background: rgba(255, 255, 255, 0.4);
-}
-
 .gallery__viewport {
     overflow: hidden;
     border-radius: var(--radius-lg);
@@ -938,7 +902,7 @@ select:focus-visible,
 }
 
 .gallery__item:hover img {
-    transform: scale(1.03);
+    transform: scale(1.02);
 }
 
 @keyframes galleryGlow {
@@ -1009,6 +973,19 @@ select:focus-visible,
 
 body.modal-open {
     overflow: hidden;
+}
+
+.gallery__extra[hidden] {
+    display: none;
+}
+
+.gallery__toggle {
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+#toggleGallery {
+    min-width: 200px;
 }
 
 @media (max-width: 1020px) {
@@ -1082,10 +1059,6 @@ body.modal-open {
         flex-direction: column;
         align-items: flex-start;
         gap: 1rem;
-    }
-
-    .gallery__controls {
-        align-self: flex-end;
     }
 
     .gallery__item {
