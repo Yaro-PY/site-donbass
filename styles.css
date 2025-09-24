@@ -192,6 +192,14 @@ body::before {
     text-shadow: 0 4px 18px rgba(0, 28, 68, 0.6);
     max-width: 640px;
     margin: 0 auto 1.2rem;
+    transition: text-shadow 0.3s ease, color 0.3s ease;
+    cursor: pointer;
+}
+
+.hero__tagline:hover {
+    color: #fff;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.6),
+        0 0 16px rgba(33, 173, 175, 0.6);
 }
 
 .hero__stats {
