@@ -514,6 +514,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+    const titleLink = document.querySelector('.site-title__link');
+    const tagline = document.querySelector('.hero__tagline');
+    const startBtn = document.getElementById('startButton');
+
+    if (!startBtn) return;
+
+    const on = () => startBtn.classList.add('attention');
+    const off = () => startBtn.classList.remove('attention');
+
+    [titleLink, tagline].forEach((el) => {
+        el?.addEventListener('mouseenter', on);
+        el?.addEventListener('mouseleave', off);
+        el?.addEventListener('focus', on);
+        el?.addEventListener('blur', off);
+    });
+});
+
 restartButton?.addEventListener('click', () => {
     totalScore = 0;
     Object.keys(missionState).forEach((key) => {
