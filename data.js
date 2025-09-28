@@ -94,4 +94,12 @@ window.EXPEDITION_DATA = Object.freeze({
         animal: 'saiga',
         lake: 'slovyansk',
     }),
+    ecoAnswers: Object.freeze({
+        monastery: 'sviatohirsk',
+        craft: 'salt',
+        poet: 'sosura',
+        theatre: 'donetsk',
+        museum: 'donetsk',
+        tradition: 'wedding',
+    }),
 });
