@@ -2,8 +2,8 @@ window.EXPEDITION_DATA = Object.freeze({
     missionTitles: Object.freeze({
         intro: 'План подорожі',
         history: 'Історична експедиція',
-        culture: 'Екологічний челендж',
-        eco: 'Екопатруль Степів',
+        culture: 'Культурний маршрут',
+        eco: 'Екологічний челендж',
         final: 'Фінальний брифінг',
     }),
     facts: Object.freeze([
@@ -87,19 +87,20 @@ window.EXPEDITION_DATA = Object.freeze({
         },
     ]),
     cultureAnswers: Object.freeze({
-        river: 'siversky',
-        forest: 'oak',
-        chalk: 'flora',
-        reserve: 'kamyani',
-        animal: 'saiga',
-        lake: 'slovyansk',
-    }),
-    ecoAnswers: Object.freeze({
         monastery: 'sviatohirsk',
         craft: 'salt',
         poet: 'sosura',
         theatre: 'donetsk',
         museum: 'donetsk',
         tradition: 'wedding',
+    }),
+
+    ecoAnswers: Object.freeze({
+        river: 'siversky',
+        forest: 'oak',
+        chalk: 'flora',
+        reserve: 'kamyani',
+        animal: 'saiga',
+        lake: 'slovyansk',
     }),
 });

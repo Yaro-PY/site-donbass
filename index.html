@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Експедиція Донбасом - навчальна онлайн-гра</title>
+        <title>Подорож Донбасом - навчальна онлайн-гра</title>
         <link rel="stylesheet" href="styles.css" />
         <link rel="icon" href="src/favicon.svg" type="image/svg+xml" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -32,13 +32,13 @@
             ></div>
             <div class="hero__content">
                 <div class="hero__badges" aria-hidden="true">
-                    <span class="hero__pill">#ЕкспедиціяДонбас</span>
+                    <span class="hero__pill">#Подорож Донбасом</span>
                     <span class="hero__pill hero__pill--accent"
                         >Web-quest 2025</span
                     >
                 </div>
                 <h1 class="site-title">
-                    <a href="#" class="site-title__link">Експедиція Донбасом</a>
+                    <a href="#" class="site-title__link">Подорож Донбасом</a>
                 </h1>
                 <p class="hero__tagline">
                     Станьте юним дослідником, зберіть артефакти минулого та
@@ -55,7 +55,7 @@
                 <ul class="hero__stats" aria-label="Основні показники гри">
                     <li>
                         <strong>3</strong>
-                        <span>міста й заповідники</span>
+                        <span>етапи маршруту</span>
                     </li>
                     <li>
                         <strong>15+</strong>
@@ -278,10 +278,10 @@
                                     />
                                 </svg>
                             </span>
-                            <h3>Екологічний челендж</h3>
+                            <h3>Культурний маршрут</h3>
                             <p>
-                                Пройдіть природними локаціями Донбасу: річки,
-                                крейдяні гори, степові заповідники.
+                                Відкрийте духовні святині, традиції та мистецтво
+                                Донбасу.
                             </p>
                             <span class="mission-card__badge">100 балів</span>
                         </button>
@@ -342,10 +342,10 @@
                                     />
                                 </svg>
                             </span>
-                            <h3>Культурний маршрут</h3>
+                            <h3>Екологічний челендж</h3>
                             <p>
-                                Відкрийте духовні святині, традиції та мистецтво
-                                Донбасу.
+                                Пройдіть природними локаціями Донбасу: річки,
+                                крейдяні гори, степові заповідники.
                             </p>
                             <span class="mission-card__badge">100 балів</span>
                         </button>
@@ -393,149 +393,7 @@
 
                 <article id="cultureMission" class="card" hidden>
                     <header class="card__header">
-                        <h2>Місія 2. Екологічний челендж</h2>
-                        <p class="mission-intro">
-                            Ви вирушаєте в екомаршрут Донбасом: від Сіверського
-                            Дінця та крейдяних схилів до степових заповідників.
-                            Ваша мета — впізнати природні перлини й вибрати
-                            правильні відповіді, що допоможуть їх зберегти.
-                        </p>
-                    </header>
-
-                    <form id="cultureForm" class="culture-form">
-                        <fieldset>
-                            <legend>1. Головна водна артерія Донбасу</legend>
-                            <label>
-                                Оберіть річку:
-                                <select name="river" required>
-                                    <option value="">-- оберіть --</option>
-                                    <option value="dnipro">Дніпро</option>
-                                    <option value="siversky">
-                                        Сіверський Донець
-                                    </option>
-                                    <option value="ingulec">Інгулець</option>
-                                </select>
-                            </label>
-                        </fieldset>
-
-                        <fieldset>
-                            <legend>
-                                2. Які ліси охороняє Святогірський нацпарк?
-                            </legend>
-                            <label>
-                                Оберіть варіант:
-                                <select name="forest" required>
-                                    <option value="">-- оберіть --</option>
-                                    <option value="oak">Дубові ліси</option>
-                                    <option value="pine">Соснові бори</option>
-                                    <option value="beech">Букові ліси</option>
-                                </select>
-                            </label>
-                        </fieldset>
-
-                        <fieldset>
-                            <legend>
-                                3. Унікальне явище в Крейдяних горах Донбасу
-                            </legend>
-                            <label>
-                                Оберіть відповідь:
-                                <select name="chalk" required>
-                                    <option value="">-- оберіть --</option>
-                                    <option value="lava">
-                                        Вулканічні лавові потоки
-                                    </option>
-                                    <option value="flora">
-                                        Крейдяна флора
-                                    </option>
-                                    <option value="geysers">Гейзери</option>
-                                </select>
-                            </label>
-                        </fieldset>
-
-                        <fieldset>
-                            <legend>
-                                4. Заповідник степового різнотрав'я на Донеччині
-                            </legend>
-                            <label>
-                                Оберіть заповідник:
-                                <select name="reserve" required>
-                                    <option value="">-- оберіть --</option>
-                                    <option value="kamyani">
-                                        Кам’яні Могили
-                                    </option>
-                                    <option value="askania">
-                                        Асканія-Нова
-                                    </option>
-                                    <option value="dnipro-oril">
-                                        Дніпровсько-Орільський
-                                    </option>
-                                </select>
-                            </label>
-                        </fieldset>
-
-                        <fieldset>
-                            <legend>
-                                5. Які тварини з Червоної книги мешкають у
-                                степах Донецького кряжа?
-                            </legend>
-                            <label>
-                                Оберіть відповідь:
-                                <select name="animal" required>
-                                    <option value="">-- оберіть --</option>
-                                    <option value="wolf">Вовки</option>
-                                    <option value="saiga">Сайгаки</option>
-                                    <option value="squirrel">Білки</option>
-                                </select>
-                            </label>
-                        </fieldset>
-
-                        <fieldset>
-                            <legend>
-                                6. Озеро Донбасу з високою солоністю та
-                                лікувальними властивостями
-                            </legend>
-                            <label>
-                                Оберіть озеро:
-                                <select name="lake" required>
-                                    <option value="">-- оберіть --</option>
-                                    <option value="svitiaz">Світязь</option>
-                                    <option value="slovyansk">
-                                        Слов’янські озера
-                                    </option>
-                                    <option value="yalpuh">Ялпуг</option>
-                                </select>
-                            </label>
-                        </fieldset>
-
-                        <p
-                            id="cultureFeedback"
-                            class="feedback"
-                            role="status"
-                        ></p>
-                        <div class="card__actions">
-                            <button class="secondary" type="reset">
-                                Очистити відповіді
-                            </button>
-                            <button
-                                id="cultureSubmit"
-                                class="cta"
-                                type="submit"
-                            >
-                                Перевірити
-                            </button>
-                            <button
-                                class="link-button mission-back"
-                                type="button"
-                            >
-                                Повернутися до завдань
-                            </button>
-                        </div>
-                    </form>
-                </article>
-
-                <article id="ecoMission" class="card" hidden>
-                    <header class="card__header">
-                        <h2>Місія 3. Культурний маршрут</h2>
+                        <h2>Місія 2. Культурний маршрут</h2>
                         <p class="mission-intro">
                             Відкрийте духовні святині, традиції та мистецтво
                             Донбасу. Ваша мета — обрати правильні відповіді та
@@ -543,7 +401,7 @@
                         </p>
                     </header>
 
-                    <form id="ecoForm" class="eco-form">
+                    <form id="cultureForm" class="culture-form">
                         <fieldset>
                             <legend>
                                 1. Який храмовий комплекс є частиною нац.
@@ -646,6 +504,148 @@
                                     <option value="wedding">Весілля</option>
                                     <option value="kupala">Свято Купала</option>
                                     <option value="carols">Колядки</option>
+                                </select>
+                            </label>
+                        </fieldset>
+
+                        <p
+                            id="cultureFeedback"
+                            class="feedback"
+                            role="status"
+                        ></p>
+                        <div class="card__actions">
+                            <button class="secondary" type="reset">
+                                Очистити відповіді
+                            </button>
+                            <button
+                                id="cultureSubmit"
+                                class="cta"
+                                type="submit"
+                            >
+                                Перевірити
+                            </button>
+                            <button
+                                class="link-button mission-back"
+                                type="button"
+                            >
+                                Повернутися до завдань
+                            </button>
+                        </div>
+                    </form>
+                </article>
+
+                <article id="ecoMission" class="card" hidden>
+                    <header class="card__header">
+                        <h2>Місія 3. Екологічний челендж</h2>
+                        <p class="mission-intro">
+                            Ви вирушаєте в екомаршрут Донбасом: від Сіверського
+                            Дінця та крейдяних схилів до степових заповідників.
+                            Ваша мета — впізнати природні перлини й вибрати
+                            правильні відповіді, що допоможуть їх зберегти.
+                        </p>
+                    </header>
+
+                    <form id="ecoForm" class="eco-form">
+                        <fieldset>
+                            <legend>1. Головна водна артерія Донбасу</legend>
+                            <label>
+                                Оберіть річку:
+                                <select name="river" required>
+                                    <option value="">-- оберіть --</option>
+                                    <option value="dnipro">Дніпро</option>
+                                    <option value="siversky">
+                                        Сіверський Донець
+                                    </option>
+                                    <option value="ingulec">Інгулець</option>
+                                </select>
+                            </label>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>
+                                2. Які ліси охороняє Святогірський нацпарк?
+                            </legend>
+                            <label>
+                                Оберіть варіант:
+                                <select name="forest" required>
+                                    <option value="">-- оберіть --</option>
+                                    <option value="oak">Дубові ліси</option>
+                                    <option value="pine">Соснові бори</option>
+                                    <option value="beech">Букові ліси</option>
+                                </select>
+                            </label>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>
+                                3. Унікальне явище в Крейдяних горах Донбасу
+                            </legend>
+                            <label>
+                                Оберіть відповідь:
+                                <select name="chalk" required>
+                                    <option value="">-- оберіть --</option>
+                                    <option value="lava">
+                                        Вулканічні лавові потоки
+                                    </option>
+                                    <option value="flora">
+                                        Крейдяна флора
+                                    </option>
+                                    <option value="geysers">Гейзери</option>
+                                </select>
+                            </label>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>
+                                4. Заповідник степового різнотрав'я на Донеччині
+                            </legend>
+                            <label>
+                                Оберіть заповідник:
+                                <select name="reserve" required>
+                                    <option value="">-- оберіть --</option>
+                                    <option value="kamyani">
+                                        Кам’яні Могили
+                                    </option>
+                                    <option value="askania">
+                                        Асканія-Нова
+                                    </option>
+                                    <option value="dnipro-oril">
+                                        Дніпровсько-Орільський
+                                    </option>
+                                </select>
+                            </label>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>
+                                5. Які тварини з Червоної книги мешкають у
+                                степах Донецького кряжа?
+                            </legend>
+                            <label>
+                                Оберіть відповідь:
+                                <select name="animal" required>
+                                    <option value="">-- оберіть --</option>
+                                    <option value="wolf">Вовки</option>
+                                    <option value="saiga">Сайгаки</option>
+                                    <option value="squirrel">Білки</option>
+                                </select>
+                            </label>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>
+                                6. Озеро Донбасу з високою солоністю та
+                                лікувальними властивостями
+                            </legend>
+                            <label>
+                                Оберіть озеро:
+                                <select name="lake" required>
+                                    <option value="">-- оберіть --</option>
+                                    <option value="svitiaz">Світязь</option>
+                                    <option value="slovyansk">
+                                        Слов’янські озера
+                                    </option>
+                                    <option value="yalpuh">Ялпуг</option>
                                 </select>
                             </label>
                         </fieldset>
@@ -1195,7 +1195,7 @@
                             />
                         </svg>
                     </div>
-                    <h3>Екоподорож Донбасом</h3>
+                    <h3>Екологічний челендж</h3>
                     <p>
                         Від річок і крейдяних гір до степових заповідників —
                         перевірте свої знання і знайдіть рішення для збереження
@@ -1329,8 +1329,9 @@
                     <h2 id="calloutTitle">Перетворіть експедицію на проєкт</h2>
                     <p>
                         Зібрані матеріали легко оформити у вигляді лонгріду,
-                        відео або шкільного воркшопу. Додайте власні інтерв'ю та
-                        фото - і отримаєте готову конкурсну роботу.
+                        відео або шкільного воркшопу. Додайте власні інтерв’ю та
+                        фото — і поділіться результатами з однокласниками та
+                        вчителями.
                     </p>
                 </div>
                 <a class="cta" href="#missionArea">Повернутися до місій</a>

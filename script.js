@@ -55,7 +55,7 @@ const missionTitles = expeditionData.missionTitles || {
     intro: 'План подорожі',
     history: 'Історична експедиція',
     culture: 'Культурний маршрут',
-    eco: 'Екопатруль Степів',
+    eco: 'Екологічний челендж',
     final: 'Фінальний брифінг',
 };
 
@@ -65,14 +65,20 @@ const historyEvents = Array.isArray(expeditionData.historyEvents)
     : [];
 
 const cultureAnswers = expeditionData.cultureAnswers || {
-    salt: 'bakhmut',
-    song: 'choirs',
-    wedding: 'mariupol',
+    monastery: 'sviatohirsk',
+    craft: 'salt',
+    poet: 'sosura',
+    theatre: 'donetsk',
+    museum: 'donetsk',
+    tradition: 'wedding',
 };
-const ecoSolution = expeditionData.ecoSolution || {
-    community: 'monitor',
-    science: 'univer',
-    media: 'schools',
+const ecoAnswers = expeditionData.ecoAnswers || {
+    river: 'siversky',
+    forest: 'oak',
+    chalk: 'flora',
+    reserve: 'kamyani',
+    animal: 'saiga',
+    lake: 'slovyansk',
 };
 
 const missionState = {
@@ -188,6 +194,9 @@ function showMission(key) {
         });
     }
     if (key === 'history') {
+        if (!historyEventsContainer.childElementCount) {
+            resetHistoryMission();
+        }
         historyEventsContainer.focus?.();
     }
 }
@@ -445,7 +454,7 @@ cultureForm?.addEventListener('reset', () => {
 ecoForm?.addEventListener('submit', (event) => {
     event.preventDefault();
     const data = new FormData(ecoForm);
-    const entries = Object.entries(ecoSolution);
+    const entries = Object.entries(ecoAnswers);
 
     if (!entries.length) {
         ecoFeedback.textContent = 'Немає даних для перевірки завдання.';
@@ -463,10 +472,10 @@ ecoForm?.addEventListener('submit', (event) => {
 
     if (correct === entries.length) {
         ecoFeedback.textContent =
-            'Вітаємо! План дій збалансований і враховує інтереси природи та громади.';
+            'Бездоганно! Ви впізнали природні перлини Донбасу.';
         ecoFeedback.className = 'feedback success';
     } else {
-        ecoFeedback.textContent = `Правильних рішень: ${correct} з ${entries.length}. Перевірте вибір і повторіть спробу.`;
+        ecoFeedback.textContent = `Правильних відповідей: ${correct} з ${entries.length}. Перечитайте підказки у галереї та спробуйте ще раз.`;
         ecoFeedback.className = 'feedback error';
     }
 
@@ -486,7 +495,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const toggleBtn = document.getElementById('toggleGallery');
 
     if (galleryItems.length > 3) {
-        // переносим все лишние элементы в extraContainer
         galleryItems
             .slice(3)
             .forEach((item) => extraContainer.appendChild(item));
