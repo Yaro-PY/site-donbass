@@ -15,7 +15,14 @@
     </head>
     <body>
         <header class="hero" role="banner">
-            <div class="hero__overlay"></div>
+            <div class="hero-slideshow" aria-hidden="true">
+                <img src="src/img1.jpg" alt="" />
+                <img src="src/img2.jpg" alt="" />
+            </div>
+            <div class="hero__overlay">
+                <div class="overlay-layer overlay-autumn is-active"></div>
+                <div class="overlay-layer overlay-winter"></div>
+            </div>
             <div class="hero__glow hero__glow--left" aria-hidden="true"></div>
             <div class="hero__glow hero__glow--right" aria-hidden="true"></div>
             <div
@@ -46,7 +53,7 @@
                 </p>
                 <button
                     id="startButton"
-                    class="cta"
+                    class="cta theme-autumn"
                     type="button"
                     aria-controls="missionArea"
                 >

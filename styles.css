@@ -69,20 +69,75 @@ body::before {
     justify-content: center;
     text-align: center;
     color: #fff;
-    background: url('src/img1.jpg') center/cover no-repeat;
     overflow: hidden;
+}
+
+.hero-slideshow {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    overflow: hidden;
+}
+
+.hero-slideshow img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 2.8s ease-in-out;
+    will-change: opacity;
+}
+
+.hero-slideshow img.is-active {
+    opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-slideshow img {
+        transition: none !important;
+    }
 }
 
 .hero__overlay {
     position: absolute;
     inset: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.overlay-layer {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 2.8s ease-in-out;
+    will-change: opacity;
+}
+
+.overlay-layer.is-active {
+    opacity: 1;
+}
+
+.overlay-autumn {
     background: linear-gradient(
         140deg,
-        rgba(0, 112, 210, 0.68),
-        rgba(0, 65, 150, 0.58)
+        rgba(210, 120, 0, 0.35),
+        rgba(150, 50, 0, 0.25)
     );
-    pointer-events: none;
-    z-index: 1;
+}
+.overlay-winter {
+    background: linear-gradient(
+        140deg,
+        rgba(0, 112, 210, 0.35),
+        rgba(0, 65, 150, 0.25)
+    );
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .overlay-layer {
+        transition: none !important;
+    }
 }
 
 .hero__content {
@@ -165,7 +220,6 @@ body::before {
 
 .hero__pill {
     color: rgba(255, 255, 255, 0.9);
-    background: rgba(7, 32, 75, 0.35);
     border: 1px solid rgba(168, 206, 255, 0.55);
     backdrop-filter: blur(6px);
     padding: 0.35rem 1.1rem;
@@ -173,11 +227,6 @@ body::before {
     font-weight: 600;
     font-size: 0.85rem;
     letter-spacing: 0.04em;
-}
-
-.hero__pill--accent {
-    background: rgba(0, 166, 255, 0.35);
-    border-color: rgba(0, 191, 255, 0.75);
 }
 
 .hero h1 {
@@ -291,13 +340,13 @@ body::before {
 
 .cta {
     position: relative;
-    z-index: 3;
+    z-index: 0;
+    isolation: isolate;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     min-width: 200px;
     padding: 0.95rem 2.6rem;
-    background: linear-gradient(135deg, #00a0ff, #0064d3);
     color: #fff;
     font-weight: 600;
     font-size: 1.05rem;
@@ -305,8 +354,49 @@ body::before {
     border-radius: 999px;
     cursor: pointer;
     text-decoration: none;
-    transition: transform 0.25s ease, box-shadow 0.25s ease,
-        background 0.25s ease;
+    background: none;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    overflow: hidden;
+}
+
+.cta::before,
+.cta::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    opacity: 0;
+    transition: opacity 2.8s ease-in-out;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.cta::before {
+    background: linear-gradient(135deg, #ffb400, #d97a00);
+}
+
+.cta::after {
+    background: linear-gradient(135deg, #00a0ff, #0064d3);
+}
+
+.cta.theme-autumn::before {
+    opacity: 1;
+}
+.cta.theme-autumn::after {
+    opacity: 0;
+}
+
+.cta.theme-winter::before {
+    opacity: 0;
+}
+.cta.theme-winter::after {
+    opacity: 1;
+}
+
+.cta:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    box-shadow: none;
 }
 
 .cta:disabled {

@@ -560,6 +560,78 @@ restartButton?.addEventListener('click', () => {
     randomFact();
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+    const wrap = document.querySelector('.hero-slideshow');
+    const overlay = document.querySelector('.hero__overlay');
+    if (!wrap || !overlay) return;
+
+    const frames = Array.from(wrap.querySelectorAll('img')).filter(
+        (el) => el.src
+    );
+    if (!frames.length) return;
+
+    const overlayLayers = Array.from(
+        overlay.querySelectorAll('.overlay-layer')
+    );
+
+    const mapSlideToLayer = [0, 1];
+    const buttonThemes = ['theme-autumn', 'theme-winter'];
+
+    const DISPLAY_TIME = 7000;
+    const FADE_TIME = 2800;
+
+    const reduce = window.matchMedia(
+        '(prefers-reduced-motion: reduce)'
+    ).matches;
+
+    let index = 0;
+
+    frames.forEach((img, i) => img.classList.toggle('is-active', i === 0));
+    if (overlayLayers.length) {
+        overlayLayers.forEach((layer, i) =>
+            layer.classList.toggle('is-active', i === mapSlideToLayer[0])
+        );
+    }
+    if (startButton) {
+        startButton.classList.remove('theme-autumn', 'theme-winter');
+        startButton.classList.add(buttonThemes[0]);
+    }
+
+    if (reduce || frames.length === 1) return;
+
+    frames.forEach((img) => {
+        const pre = new Image();
+        pre.src = img.src;
+    });
+
+    const play = () => {
+        const current = frames[index];
+        const nextIndex = (index + 1) % frames.length;
+        const next = frames[nextIndex];
+
+        next.classList.add('is-active');
+
+        if (overlayLayers.length) {
+            const nextLayer = mapSlideToLayer[nextIndex];
+            overlayLayers.forEach((layer, i) =>
+                layer.classList.toggle('is-active', i === nextLayer)
+            );
+        }
+
+        if (startButton) {
+            startButton.classList.remove('theme-autumn', 'theme-winter');
+            startButton.classList.add(buttonThemes[nextIndex]);
+        }
+
+        setTimeout(() => {
+            current.classList.remove('is-active');
+            index = nextIndex;
+        }, FADE_TIME);
+    };
+
+    setInterval(play, DISPLAY_TIME);
+});
+
 resetHistoryMission();
 updateScoreboard();
 showMission('intro');
