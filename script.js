@@ -632,6 +632,111 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(play, DISPLAY_TIME);
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+    const items = Array.from(document.querySelectorAll('.gallery__item'));
+    if (!items.length) return;
+
+    const modal = document.querySelector('.gallery-modal');
+    const imgEl = modal?.querySelector('.gallery-modal__image');
+    const captionEl = modal?.querySelector('.gallery-modal__caption');
+    const closeBtn = modal?.querySelector('.gallery-modal__close');
+    const prevBtn = modal?.querySelector('.gallery-modal__nav--prev');
+    const nextBtn = modal?.querySelector('.gallery-modal__nav--next');
+
+    if (!modal || !imgEl || !captionEl || !closeBtn || !prevBtn || !nextBtn)
+        return;
+
+    let current = 0;
+    let touchStartX = 0;
+    let touchDeltaX = 0;
+
+    const setSlide = (index) => {
+        current = (index + items.length) % items.length;
+        const fig = items[current];
+        const pic = fig.querySelector('img');
+        const cap = fig.querySelector('figcaption');
+
+        imgEl.src = pic.getAttribute('src');
+        imgEl.alt = pic.getAttribute('alt') || '';
+        captionEl.textContent = cap ? cap.textContent.trim() : '';
+
+        const preload = (i) => {
+            const f = items[(i + items.length) % items.length];
+            const p = new Image();
+            p.src = f.querySelector('img').getAttribute('src');
+        };
+        preload(current + 1);
+        preload(current - 1);
+    };
+
+    const open = (index) => {
+        setSlide(index);
+        modal.hidden = false;
+        document.body.classList.add('no-scroll');
+        document.addEventListener('keydown', onKeydown);
+    };
+
+    const close = () => {
+        modal.hidden = true;
+        document.body.classList.remove('no-scroll');
+        document.removeEventListener('keydown', onKeydown);
+    };
+
+    const next = () => setSlide(current + 1);
+    const prev = () => setSlide(current - 1);
+
+    const onKeydown = (e) => {
+        if (e.key === 'Escape') return close();
+        if (e.key === 'ArrowRight') return next();
+        if (e.key === 'ArrowLeft') return prev();
+    };
+
+    items.forEach((fig, i) => {
+        const pic = fig.querySelector('img');
+        pic.style.cursor = 'zoom-in';
+        pic.addEventListener('click', () => open(i));
+    });
+
+    closeBtn.addEventListener('click', close);
+    nextBtn.addEventListener('click', next);
+    prevBtn.addEventListener('click', prev);
+
+    modal.addEventListener('click', (e) => {
+        const clickInsideImage =
+            e.target === imgEl ||
+            e.target === captionEl ||
+            e.target.closest('.gallery-modal__nav');
+        if (!clickInsideImage) close();
+    });
+
+    modal.addEventListener(
+        'touchstart',
+        (e) => {
+            if (e.touches.length !== 1) return;
+            touchStartX = e.touches[0].clientX;
+            touchDeltaX = 0;
+        },
+        { passive: true }
+    );
+
+    modal.addEventListener(
+        'touchmove',
+        (e) => {
+            if (e.touches.length !== 1) return;
+            touchDeltaX = e.touches[0].clientX - touchStartX;
+        },
+        { passive: true }
+    );
+
+    modal.addEventListener('touchend', () => {
+        const threshold = 50;
+        if (touchDeltaX > threshold) prev();
+        else if (touchDeltaX < -threshold) next();
+        touchStartX = 0;
+        touchDeltaX = 0;
+    });
+});
+
 resetHistoryMission();
 updateScoreboard();
 showMission('intro');

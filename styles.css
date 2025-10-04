@@ -1257,6 +1257,103 @@ body.modal-open {
     min-width: 200px;
 }
 
+/* блокировка прокрутки тела, когда открыта модалка */
+.no-scroll {
+    overflow: hidden;
+}
+
+/* модальное окно уже есть — добавим кнопки навигации */
+.gallery-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 18, 28, 0.85);
+    display: grid;
+    grid-template-rows: 1fr auto;
+    justify-items: center;
+    align-items: center;
+    padding: 1.2rem;
+    z-index: 1000;
+}
+
+.gallery-modal__image {
+    max-width: min(96vw, 1200px);
+    max-height: 80vh;
+    object-fit: contain;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+    border-radius: 12px;
+    background: #0002;
+}
+
+.gallery-modal__caption {
+    margin: 0.8rem 0 0;
+    color: #f3f7ff;
+    text-align: center;
+    max-width: min(92vw, 1000px);
+}
+
+.gallery-modal__close {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    font-size: 28px;
+    line-height: 1;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    backdrop-filter: blur(6px);
+}
+
+.gallery-modal__close:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.gallery-modal__nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.18);
+    color: #fff;
+    font-size: 34px;
+    line-height: 1;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    backdrop-filter: blur(6px);
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.gallery-modal__nav:hover {
+    background: rgba(255, 255, 255, 0.28);
+    transform: translateY(-50%) scale(1.04);
+}
+
+.gallery-modal__nav:active {
+    transform: translateY(-50%) scale(0.98);
+}
+
+.gallery-modal__nav--prev {
+    left: 16px;
+}
+.gallery-modal__nav--next {
+    right: 16px;
+}
+
+@media (max-width: 480px) {
+    .gallery-modal__nav {
+        width: 46px;
+        height: 46px;
+        font-size: 28px;
+    }
+}
+
 @media (max-width: 1020px) {
     .gallery__track {
         gap: 1.2rem;
