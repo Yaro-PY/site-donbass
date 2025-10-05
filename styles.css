@@ -1306,6 +1306,25 @@ body.modal-open {
     }
 }
 
+.gallery__header h2 {
+    margin: 0;
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    position: relative;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--accent), #21adaf);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: text-shadow 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+}
+
+.gallery__header h2:hover {
+    text-shadow: 0 0 6px rgba(160, 199, 241, 0.6),
+        0 0 14px rgba(132, 192, 235, 0.8), 0 0 28px rgba(0, 155, 255, 0.6);
+    transform: translateY(-2px);
+}
+
 @media (max-width: 1020px) {
     .gallery__track {
         gap: 1.2rem;
