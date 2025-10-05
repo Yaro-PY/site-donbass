@@ -1257,17 +1257,14 @@ body.modal-open {
     min-width: 200px;
 }
 
-/* блокировка прокрутки тела, когда открыта модалка */
 .no-scroll {
     overflow: hidden;
 }
 
-/* модальное окно уже есть — добавим кнопки навигации */
 .gallery-modal {
     position: fixed;
     inset: 0;
     background: rgba(10, 18, 28, 0.85);
-    display: grid;
     grid-template-rows: 1fr auto;
     justify-items: center;
     align-items: center;
